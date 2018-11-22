@@ -1,0 +1,13 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "CCjF9pElzjAP19ZZEgdH4mOQ030=",
+			"path": "github.com/vrischmann/envconfig",
+			"revision": "7a443243d539c9595dd8aa7f03a6f68707b80e66",
+			"revisionTime": "2018-07-31T22:37:45Z"
+		}
+	],
+	"rootPath": "github.com/daily-content"
+}
