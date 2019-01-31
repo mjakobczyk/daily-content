@@ -1,4 +1,4 @@
-# MinHash
+# daily-content
 
 Application used to consume daily content from the internet.
 
