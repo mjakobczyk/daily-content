@@ -1,5 +1,7 @@
 package web
 
+import "github.com/go-http-utils/logger"
+
 type Config struct {
 	Port int    `envconfig:"default=8080"`
 	IP   string `envconfig:"default=0.0.0.0"`

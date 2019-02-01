@@ -3,10 +3,32 @@
 	"ignore": "test",
 	"package": [
 		{
+			"checksumSHA1": "qmP5Szpq/WoJFj2adMaQi+QSuB8=",
+			"path": "github.com/go-http-utils/logger",
+			"revision": "f3a42dcdeae6e445c9e986b7fda289d98db10414",
+			"revisionTime": "2016-11-28T09:28:50Z"
+		},
+		{
+			"checksumSHA1": "yGnECJsPZBlk5khJmLUP8thNNxM=",
+			"path": "github.com/gorilla/mux",
+			"revision": "a7962380ca08b5a188038c69871b8d3fbdf31e89",
+			"revisionTime": "2019-01-25T16:05:53Z"
+		},
+		{
+			"checksumSHA1": "OBvAHqWjdI4NQVAqTkcQAdTuCFY=",
+			"path": "github.com/justinas/alice",
+			"revision": "03f45bd4b7dad4734bc4620e46a35789349abb20",
+			"revisionTime": "2017-10-23T06:44:55Z"
+		},
+		{
 			"checksumSHA1": "CCjF9pElzjAP19ZZEgdH4mOQ030=",
 			"path": "github.com/vrischmann/envconfig",
 			"revision": "7a443243d539c9595dd8aa7f03a6f68707b80e66",
 			"revisionTime": "2018-07-31T22:37:45Z"
+		},
+		{
+			"path": "https://github.com/go-http-utils/logger",
+			"revision": ""
 		}
 	],
 	"rootPath": "github.com/daily-content"
