@@ -32,13 +32,13 @@ func NewServer(c *Config) *Server {
 	}
 
 	// TODO: add handling endpoints
-	// 	srv.Router.HandleFunc("/endpoint", srv.GEThandler).Methods("GET")
+	srv.router.HandleFunc("/randomstuff", srv.randomStuffGETHandler).Methods("GET")
 
 	return &srv
 }
 
 // Start function kicks off the server.
-func Start(s *Server) error {
+func (s *Server) Start() error {
 	address := fmt.Sprintf("%s:%v", s.config.IP, s.config.Port)
 
 	log.Println("Server starting at: ", address)
