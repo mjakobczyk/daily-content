@@ -19,7 +19,7 @@ RUN apk add make bash
 
 # Build project.
 # RUN make build
-RUN make build && \
+RUN CGO_ENABLED=0 go build -o daily-content && \
     mv ./daily-content /usr/bin/daily-content
 
 # Start a new stage from scratch
