@@ -14,7 +14,7 @@ services:
 dist: trusty
 
 env:
-  - DOCKER_COMPOSE_VERSION=1.4.2
+  - DOCKER_COMPOSE_VERSION=1.23.2
 
 before_install:
   - sudo rm /usr/local/bin/docker-compose
