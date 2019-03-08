@@ -16,7 +16,8 @@ RUN apk add make bash
 
 # Build project.
 # RUN make build
-RUN go build -o daily-content ./... && \
+RUN echo $GOPATH && \
+    go build -o daily-content ./... && \
     mv ./daily-content /usr/bin/daily-content
 
 # Start a new stage from scratch
@@ -29,8 +30,6 @@ RUN apk --no-cache add ca-certificates
 # Copy the Pre-built binary file from the previous stage
 # to the root directory.
 COPY --from=builder /usr/bin/daily-content .
-
-RUN echo $GOPATH
 
 # Expose port which is going to be used.
 EXPOSE 8080
