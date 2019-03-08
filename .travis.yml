@@ -1,0 +1,26 @@
+# Use the fast container-based test runner instead of
+# the slow VM-based runner.
+sudo: false
+
+# Language of build is Golang.
+language: go
+
+# Golang language specification.
+go:
+  - 1.11.x
+
+# Clone the most recent commit only.
+git:
+  depth: 1
+
+# Skip the install step. Don't `go get` dependencies.
+# Only build with the code in vendor/.
+install: true
+
+# Don't email me the results of the test runs.
+notifications:
+  email: false
+
+# Steps to proceed when running Travis job.
+script:
+  go build
