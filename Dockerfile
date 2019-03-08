@@ -8,13 +8,10 @@ FROM golang:alpine AS builder
 # Add the project content.
 ADD . /go/src/github.com/daily-content/
 
-# Add the vendor dependencies.
-ADD ./vendor /go/src/github.com/daily-content/vendor
-
 # Set the current working directory inside the container.
 WORKDIR /go/src/github.com/daily-content/
 
-# Install make tool/
+# Install make and bash.
 RUN apk add make bash
 
 # Build project.
