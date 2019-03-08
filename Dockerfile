@@ -6,18 +6,17 @@
 FROM golang:alpine AS builder
 
 # Add the project content.
-ADD . /go/src/github.com/daily-content/
+ADD . /go/src/github.com/mjakobczyk/daily-content/
 
 # Set the current working directory inside the container.
-WORKDIR /go/src/github.com/daily-content/
+WORKDIR /go/src/github.com/mjakobczyk/daily-content/
 
 # Install make and bash.
 RUN apk add make bash
 
 # Build project.
 # RUN make build
-RUN echo $GOPATH && \
-    go build -o daily-content ./... && \
+RUN go build -o daily-content && \
     mv ./daily-content /usr/bin/daily-content
 
 # Start a new stage from scratch
