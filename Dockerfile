@@ -15,7 +15,6 @@ WORKDIR /go/src/github.com/mjakobczyk/daily-content/
 RUN apk add make bash
 
 # Build project.
-# RUN make build
 RUN go build -o daily-content && \
     mv ./daily-content /usr/bin/daily-content
 
