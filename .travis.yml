@@ -2,49 +2,25 @@
 # the slow VM-based runner.
 sudo: false
 
-# Language for build is Golang.
+# Language of build is Golang.
 language: go
 
 # Golang language specification.
 go:
   - 1.11.x
 
-# Only clone the most recent commit.
+# Clone the most recent commit only.
 git:
   depth: 1
 
-# Skip the install step. Don't `go get` dependencies. Only build with the code
-# in vendor/
+# Skip the install step. Don't `go get` dependencies.
+# Only build with the code in vendor/.
 install: true
 
 # Don't email me the results of the test runs.
 notifications:
   email: false
 
+# Steps to proceed when running Travis job.
 script:
-    go build
-
-# branches:
-#   only:
-#   - development
-
-# services:
-#   - docker
-# dist: trusty
-
-# env:
-#   - DOCKER_COMPOSE_VERSION=1.23.2
-
-# before_install:
-#   - sudo rm /usr/local/bin/docker-compose
-#   - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
-#   - chmod +x docker-compose
-#   - sudo mv docker-compose /usr/local/bin
-
-# install:
-#   - docker-compose build
-#   - docker-compose up -d
-
-# after_script:
-#   - docker-compose stop
-#   - docker-compose rm -f
+  go build

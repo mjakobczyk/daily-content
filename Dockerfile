@@ -15,7 +15,7 @@ WORKDIR /go/src/github.com/mjakobczyk/daily-content/
 RUN apk add make bash
 
 # Build project.
-RUN go build -o daily-content && \
+RUN make build && \
     mv ./daily-content /usr/bin/daily-content
 
 # Start a new stage from scratch
