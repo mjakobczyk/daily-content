@@ -30,6 +30,8 @@ RUN apk --no-cache add ca-certificates
 # to the root directory.
 COPY --from=builder /usr/bin/daily-content .
 
+RUN echo $GOPATH
+
 # Expose port which is going to be used.
 EXPOSE 8080
 
