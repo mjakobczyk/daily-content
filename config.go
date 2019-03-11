@@ -1,8 +1,8 @@
 package main
 
-import "github.com/mjakobczyk/daily-content/web"
+import "github.com/mjakobczyk/daily-content/server"
 
 // Config stores all the configuration used in project.
 type Config struct {
-	Server web.Config
+	Server server.Config
 }

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/mjakobczyk/daily-content/web"
+	"github.com/mjakobczyk/daily-content/server"
 	"github.com/vrischmann/envconfig"
 )
 
@@ -20,7 +20,7 @@ func main() {
 
 	fmt.Println("Config: ", config)
 
-	srv := web.NewServer(&config.Server)
+	srv := server.NewServer(&config.Server)
 	err = srv.Start()
 	if err != nil {
 		fmt.Println(err)
