@@ -24,10 +24,12 @@ func NewService(config *Config) *Service {
 func (s *Service) GetTopHeadlines() (TopHeadlineDTO, error) {
 	var topHeadlineDTO TopHeadlineDTO
 
-	url := fmt.Sprint("%s/topheadlines?country=us&apiKey=%s",
+	url := fmt.Sprintf("%s/top-headlines?country=us&apiKey=%s",
 		s.Config.Host.API,
 		s.Config.Host.Key,
 	)
+
+	fmt.Println(url)
 
 	request, err := http.NewRequest(http.MethodGet, url, nil)
 	if err != nil {
@@ -42,6 +44,8 @@ func (s *Service) GetTopHeadlines() (TopHeadlineDTO, error) {
 	} else {
 		return TopHeadlineDTO{}, err
 	}
+
+	fmt.Println("Ree2")
 
 	defer func() { _ = response.Body.Close() }()
 
