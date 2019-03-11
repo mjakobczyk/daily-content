@@ -10,11 +10,6 @@ func (s *Server) randomStuffGETHandler(w http.ResponseWriter, r *http.Request) {
 
 	var err error
 
-	if err != nil {
-		_ = NewAPIError(err.Error(), 500).Send(w)
-		return
-	}
-
 	response := "Random stuff"
 
 	body, err := json.Marshal(response)
