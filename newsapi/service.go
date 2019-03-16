@@ -21,6 +21,7 @@ func NewService(config *Config) *Service {
 	}
 }
 
+// GetTopHeadlines requests NewsAPI for news' top headlines.
 func (s *Service) GetTopHeadlines() (TopHeadlineDTO, error) {
 	var topHeadlineDTO TopHeadlineDTO
 
@@ -28,8 +29,6 @@ func (s *Service) GetTopHeadlines() (TopHeadlineDTO, error) {
 		s.Config.Host.API,
 		s.Config.Host.Key,
 	)
-
-	fmt.Println(url)
 
 	request, err := http.NewRequest(http.MethodGet, url, nil)
 	if err != nil {
@@ -45,8 +44,6 @@ func (s *Service) GetTopHeadlines() (TopHeadlineDTO, error) {
 		return TopHeadlineDTO{}, err
 	}
 
-	fmt.Println("Ree2")
-
 	defer func() { _ = response.Body.Close() }()
 
 	data, err := ioutil.ReadAll(response.Body)
@@ -55,7 +52,6 @@ func (s *Service) GetTopHeadlines() (TopHeadlineDTO, error) {
 	}
 
 	err = json.Unmarshal(data, &topHeadlineDTO)
-
 	if err != nil {
 		return TopHeadlineDTO{}, UnmarshalDataFailedError
 	}

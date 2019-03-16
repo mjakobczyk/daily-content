@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/mjakobczyk/daily-content/newsapi"
+	"github.com/mjakobczyk/daily-content/server"
 
 	"github.com/vrischmann/envconfig"
 )
@@ -22,16 +23,9 @@ func main() {
 	fmt.Println("Config: ", config)
 
 	newsapiService := newsapi.NewService(&config.NewsAPI)
-	response, err := newsapiService.GetTopHeadlines()
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
 
-	fmt.Println(response)
-
-	// srv := server.NewServer(&config.Server)
-	// err = srv.Start()
+	srv := server.NewServer(&config.Server, newsapiService)
+	err = srv.Start()
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
