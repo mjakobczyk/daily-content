@@ -4,13 +4,15 @@ import "encoding/json"
 
 // TopHeadlineDTO stores information about top headlines data from News API.
 type TopHeadlineDTO struct {
-	Status       string `json:"status"`
-	TotalResults int    `json:"totalResults"`
+	Status       string       `json:"status"`
+	TotalResults int          `json:"totalResults"`
+	Articles     []ArticleDTO `json:"articles"`
 }
 
 type topHeadlineRequestDTO struct {
-	Status       string `json:"status"`
-	TotalResults int    `json:"totalResults"`
+	Status       string       `json:"status"`
+	TotalResults int          `json:"totalResults"`
+	Articles     []ArticleDTO `json:"articles"`
 }
 
 // UnmarshalJSON provides custom unmarshaling for TopHealineDTO type.
@@ -23,6 +25,7 @@ func (t *TopHeadlineDTO) UnmarshalJSON(data []byte) error {
 
 	t.Status = topHeadlineRequestDTO.Status
 	t.TotalResults = topHeadlineRequestDTO.TotalResults
+	t.Articles = topHeadlineRequestDTO.Articles
 
 	return nil
 }
