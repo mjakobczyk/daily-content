@@ -1,4 +1,4 @@
-package web
+package server
 
 import (
 	"encoding/json"
@@ -9,11 +9,6 @@ func (s *Server) randomStuffGETHandler(w http.ResponseWriter, r *http.Request) {
 	defer func() { _ = r.Body.Close() }()
 
 	var err error
-
-	if err != nil {
-		_ = NewAPIError(err.Error(), 500).Send(w)
-		return
-	}
 
 	response := "Random stuff"
 

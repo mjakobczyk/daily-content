@@ -1,4 +1,4 @@
-package web
+package server
 
 import (
 	"fmt"
@@ -7,17 +7,23 @@ import (
 
 	"github.com/gorilla/mux"
 	"github.com/justinas/alice"
+	"github.com/mjakobczyk/daily-content/newsapi"
 )
+
+type newsapiService interface {
+	GetTopHeadlines() (newsapi.TopHeadlineDTO, error)
+}
 
 // Server struct holds connectors and settings.
 type Server struct {
 	config     *Config
 	middleware alice.Chain
 	router     mux.Router
+	newsapi    newsapiService
 }
 
 // NewServer function creates new instance of Server.
-func NewServer(c *Config) *Server {
+func NewServer(c *Config, newsapi newsapiService) *Server {
 	router := *mux.NewRouter()
 	middleware := alice.New(
 		Header("Access-Control-Allow-Origin", "*"),
@@ -29,10 +35,12 @@ func NewServer(c *Config) *Server {
 		config:     c,
 		middleware: middleware,
 		router:     router,
+		newsapi:    newsapi,
 	}
 
 	// TODO: add handling endpoints
 	srv.router.HandleFunc("/randomstuff", srv.randomStuffGETHandler).Methods("GET")
+	srv.router.HandleFunc("/headlines", srv.headlinesGETHandler).Methods("GET")
 
 	return &srv
 }

@@ -7,6 +7,10 @@ Application used to consume daily content from the internet.
 * [Golang](https://golang.org/)
 * [Docker](https://www.docker.com/)
 
+## Integration with services
+
+* Powered by [NewsAPI.org](https://newsapi.org/)
+
 ## Run
 
 First, clone the repository:
