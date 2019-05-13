@@ -12,7 +12,7 @@ Application used to consume daily content from the internet.
 First, clone the repository:
 
 ```bash
-git clone https://github.com/mjakobczyk/minhash.git
+git clone https://github.com/mjakobczyk/daily-content.git
 ```
 Second, run docker-compose to run application without managing dependencies:
 
