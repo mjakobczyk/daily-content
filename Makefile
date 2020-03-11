@@ -1,4 +1,4 @@
-.PHONY: dockerize clean build version
+.PHONY: build version dockerize clean daily-content
 
 version=0.1.0
 
@@ -14,4 +14,4 @@ clean:
 	rm daily-content
 
 daily-content: 
-	CGO_ENABLED=0 go build -o daily-content
+	CGO_ENABLED=0 go build -o daily-content -mod=vendor *.go
