@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/mjakobczyk/daily-content/newsapi"
-	"github.com/mjakobczyk/daily-content/server"
+	"github.com/mjakobczyk/daily-content/internal/newsapi"
+	"github.com/mjakobczyk/daily-content/internal/server"
 
 	"github.com/vrischmann/envconfig"
 )

@@ -7,7 +7,7 @@ import (
 
 	"github.com/gorilla/mux"
 	"github.com/justinas/alice"
-	"github.com/mjakobczyk/daily-content/newsapi"
+	"github.com/mjakobczyk/daily-content/internal/newsapi"
 )
 
 type newsapiService interface {
