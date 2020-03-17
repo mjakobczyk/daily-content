@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/mjakobczyk/daily-content/config"
 	"github.com/mjakobczyk/daily-content/internal/newsapi"
 	"github.com/mjakobczyk/daily-content/internal/server"
 
@@ -11,7 +12,7 @@ import (
 )
 
 func main() {
-	var config Config
+	var config config.Config
 	var err error
 
 	err = envconfig.Init(&config)

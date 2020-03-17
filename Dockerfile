@@ -1,35 +1,38 @@
-# Retrieve the `golang:alpine` image to provide the
-# necessary Golang tooling for building Go binaries.
-# 
-# Here I retrieve the `alpine`-based just for the 
-# convenience of using a tiny image.
+# Stage 1
 FROM golang:alpine AS builder
 
-# Set working directory.
-WORKDIR /
+# Setup base application directory
+ENV BASE_APP_DIR /go/src/github.com/mjakobczyk/daily-content
+WORKDIR ${BASE_APP_DIR}
 
-# Install required applications.
+# Enable go modules
+ENV GO111MODULE=on
+
+# Install necessary applications
 RUN apk add make bash
 
-# Copy entire content of application.
+# Copy files
 COPY . .
 
-# Build project.
-RUN make build
+# Build project and copy executable to dedicated directory
+RUN make build && mkdir /app && mv ./main /app/main
 
-# Start a new stage from scratch.
+# Stage 2
 FROM alpine:latest
 
-# Enable no cache to keep container as small as possible.
-# Install Certificates in Alpine Image to establish Secured Communication.
+# Setup working directory
+RUN mkdir /app && chmod 777 /app
+WORKDIR /app
+
+# Enable no cache to keep container as small as possible
+# Install Certificates in Alpine Image to establish Secured Communication
 RUN apk --no-cache add ca-certificates
 
 # Copy the Pre-built binary file from the previous stage
-# to the root directory.
-COPY --from=builder daily-content .
+COPY --from=builder /app /app
 
-# Expose port which is going to be used.
+# Expose port which is going to be used
 EXPOSE 8080
 
-# Run project from the command line.
-CMD ["./daily-content"]
+# Run project from the command line
+CMD ["/app/main"]
