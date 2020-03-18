@@ -1,10 +1,11 @@
 package main
 
 import (
-	"fmt"
-	"os"
+	"log"
+	"sync"
 
 	"github.com/mjakobczyk/daily-content/config"
+	"github.com/mjakobczyk/daily-content/env"
 	"github.com/mjakobczyk/daily-content/internal/newsapi"
 	"github.com/mjakobczyk/daily-content/internal/server"
 
@@ -12,23 +13,30 @@ import (
 )
 
 func main() {
-	var config config.Config
-	var err error
+	config := config.Config{}
+	err := envconfig.Init(&config)
+	panicOnError(err)
 
-	err = envconfig.Init(&config)
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
+	log.Println("Config: ", config) // TODO: create String() for Config
 
-	fmt.Println("Config: ", config)
-
+	env := env.NewEnvironment(config.Server.Logger.Type)
 	newsapiService := newsapi.NewService(&config.NewsAPI)
+	srv := server.NewServer(config.Server, *env, newsapiService)
 
-	srv := server.NewServer(&config.Server, newsapiService)
-	err = srv.Start()
+	wg := &sync.WaitGroup{}
+	wg.Add(1)
+
+	go func() {
+		if err := srv.Start(); err != nil {
+			panic(err)
+		}
+	}()
+
+	wg.Wait()
+}
+
+func panicOnError(err error) {
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		panic(err)
 	}
 }
