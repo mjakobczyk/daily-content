@@ -2,9 +2,9 @@ version: '3'
 services:
   daily-content:
     build:
-      context: .
+      context: ../../.
       dockerfile: Dockerfile
-    environment:
-      - NEWSAPI_HOST_KEY=
+    env_file:
+      - ./values.env
     ports:
       - 8080:8080

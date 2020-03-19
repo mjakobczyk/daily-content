@@ -1,11 +1,15 @@
 # daily-content
 
+## Overview
+
 Application used to consume daily content from the internet.
 
 ## Technologies used
 
 * [Golang](https://golang.org/)
 * [Docker](https://www.docker.com/)
+* [Docker Compose](https://docs.docker.com/compose/)
+* [Make](https://www.gnu.org/software/make/)
 
 ## Integration with services
 
@@ -13,21 +17,21 @@ Application used to consume daily content from the internet.
 
 ## Run
 
-First, clone the repository:
-
+First, clone this repository:
 ```bash
-git clone https://github.com/mjakobczyk/daily-content.git
-```
-Second, run docker-compose to run application without managing dependencies:
-
-```bash
-docker-compose build
-docker-compose up
+$ git clone https://github.com/mjakobczyk/daily-content.git
 ```
 
-Alternatively, build and run manually:
+ Please check environment variables values provided in `values.env` file before running the application. If you want to integrate with `NewsAPI` service you have to provide your own API key - there is no default value.
 
-```go
-go build *.go
-go run *.go
+Running application in stand-alone mode is not supported. Make use of suggested options:
+
+### Docker Compose
+
+`Docker Compose` is used for local development purposes.
+
+```bash
+$ cd deployments/docker-compose
+$ docker-compose build
+$ docker-compose up
 ```

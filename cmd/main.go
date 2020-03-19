@@ -21,7 +21,7 @@ func main() {
 
 	env := env.NewEnvironment(config.Server.Logger.Type)
 	newsapiService := newsapi.NewService(&config.NewsAPI)
-	srv := server.NewServer(config.Server, *env, newsapiService)
+	srv := server.NewServer(&config.Server, env, newsapiService)
 
 	wg := &sync.WaitGroup{}
 	wg.Add(1)

@@ -10,9 +10,3 @@ version:
 
 dockerize:
 	docker build -t $(app):$(version) .
-
-clean: 
-	rm main-content
-
-daily-content: 
-	CGO_ENABLED=0 go build -v -o main -mod=vendor ./cmd/

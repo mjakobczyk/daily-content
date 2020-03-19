@@ -15,7 +15,7 @@ RUN apk add make bash
 COPY . .
 
 # Build project and copy executable to dedicated directory
-RUN make build && mkdir /app && mv ./main /app/main
+RUN CGO_ENABLED=0 go build -v -o main -mod=vendor ./cmd/ && mkdir /app && mv ./main /app/main
 
 # Stage 2
 FROM alpine:latest

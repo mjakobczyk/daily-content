@@ -15,13 +15,13 @@ type newsapiService interface {
 
 // Server struct holds connectors and settings.
 type Server struct {
-	config  Config
-	env     env.Environment
+	config  *Config
+	env     *env.Environment
 	newsapi newsapiService
 }
 
 // NewServer function creates new instance of Server.
-func NewServer(c Config, e env.Environment, newsapi newsapiService) *Server {
+func NewServer(c *Config, e *env.Environment, newsapi newsapiService) *Server {
 	srv := Server{
 		config:  c,
 		env:     e,
