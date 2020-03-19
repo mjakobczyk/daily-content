@@ -1,4 +1,7 @@
-# daily-content
+# Daily Content
+
+[![GoDoc](https://godoc.org/github.com/mjakobczyk/daily-content?status.svg)](https://godoc.org/github.com/kyma-incubator/bullseye-showcase)
+[![Go Report Card](https://goreportcard.com/badge/mjakobczyk/daily-content)](https://goreportcard.com/mjakobczyk/daily-content)
 
 ## Overview
 
