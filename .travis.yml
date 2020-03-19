@@ -21,6 +21,9 @@ install: true
 notifications:
   email: false
 
+services:
+  - docker
+
 # Steps to proceed when running Travis job.
 script:
-  go build
+  make dockerize

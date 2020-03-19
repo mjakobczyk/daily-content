@@ -1,4 +1,4 @@
-package server
+package env
 
 import (
 	"net/http"

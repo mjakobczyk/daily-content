@@ -1,8 +1,8 @@
-package main
+package config
 
 import (
-	"github.com/mjakobczyk/daily-content/newsapi"
-	"github.com/mjakobczyk/daily-content/server"
+	"github.com/mjakobczyk/daily-content/internal/newsapi"
+	"github.com/mjakobczyk/daily-content/internal/server"
 )
 
 // Config stores all the configuration used in project.

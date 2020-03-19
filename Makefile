@@ -1,6 +1,7 @@
-.PHONY: dockerize clean build version
+.PHONY: build version dockerize clean daily-content
 
 version=0.1.0
+app=daily-context
 
 build: daily-content
 
@@ -8,10 +9,4 @@ version:
 	@echo $(version)
 
 dockerize:
-	docker build -t daily-content:$(version) .
-
-clean: 
-	rm daily-content
-
-daily-content: 
-	CGO_ENABLED=0 go build -o daily-content
+	docker build -t $(app):$(version) .
