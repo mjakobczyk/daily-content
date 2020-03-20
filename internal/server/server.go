@@ -28,8 +28,8 @@ func NewServer(c *Config, e *env.Environment, newsapi newsapiService) *Server {
 		newsapi: newsapi,
 	}
 
-	srv.env.Router.HandleFunc("/randomstuff", srv.randomStuffGETHandler).Methods("GET")
-	srv.env.Router.HandleFunc("/headlines", srv.headlinesGETHandler).Methods("GET")
+	srv.env.Router.Get("/randomstuff", srv.randomStuffGETHandler)
+	srv.env.Router.Get("/headlines", srv.headlinesGETHandler)
 
 	return &srv
 }
@@ -39,5 +39,5 @@ func (s *Server) Start() error {
 	address := fmt.Sprintf("%s:%v", s.config.IP, s.config.Port)
 	log.Println("Server starting at: ", address)
 
-	return http.ListenAndServe(address, s.env.Middleware.Then(&s.env.Router))
+	return http.ListenAndServe(address, s.env.Middleware.Then(s.env.Router.InternalRouter()))
 }
