@@ -21,14 +21,11 @@ type Server struct {
 }
 
 // NewServer function creates new instance of Server.
-func NewServer(c *Config, e *env.Environment, newsapi newsapiService) *Server {
+func NewServer(c *Config, e *env.Environment) *Server {
 	srv := Server{
-		config:  c,
-		env:     e,
-		newsapi: newsapi,
+		config: c,
+		env:    e,
 	}
-
-	srv.env.Router.Get("/test/headlines", srv.headlinesGETHandler)
 
 	return &srv
 }

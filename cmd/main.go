@@ -6,7 +6,7 @@ import (
 
 	"github.com/mjakobczyk/daily-content/config"
 	"github.com/mjakobczyk/daily-content/env"
-	"github.com/mjakobczyk/daily-content/internal/newsapi"
+	"github.com/mjakobczyk/daily-content/internal/article"
 	"github.com/mjakobczyk/daily-content/internal/server"
 
 	"github.com/vrischmann/envconfig"
@@ -20,8 +20,13 @@ func main() {
 	log.Println("Config: ", config) // TODO: create String() for Config
 
 	env := env.NewEnvironment(config.Server.Logger.Type)
-	newsapiService := newsapi.NewService(&config.NewsAPI)
-	srv := server.NewServer(&config.Server, env, newsapiService)
+
+	articleRepository := article.NewRepository()
+	articleService := article.NewService(env, articleRepository)
+	articleRouter := article.NewRouter(env, articleService)
+	articleRouter.InitRoutes()
+
+	srv := server.NewServer(&config.Server, env)
 
 	wg := &sync.WaitGroup{}
 	wg.Add(1)

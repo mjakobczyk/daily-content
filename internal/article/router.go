@@ -16,13 +16,10 @@ type Router struct {
 }
 
 func NewRouter(e *env.Environment, s service) *Router {
-	router := &Router{
+	return &Router{
 		env:     e,
 		service: s,
 	}
-
-	router.initRoutes()
-	return router
 }
 
 type service interface {
@@ -30,7 +27,7 @@ type service interface {
 	GetLatestArticles() []newsapi.ArticleDTO
 }
 
-func (r *Router) initRoutes() {
+func (r *Router) InitRoutes() {
 	r.env.Router.Get("/articles", r.getAllArticlesHandler)
 }
 

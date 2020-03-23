@@ -8,6 +8,6 @@ type Config struct {
 	IP   string `envconfig:"default=0.0.0.0"`
 
 	Logger struct {
-		Type logger.Type `envconfig:"default=3"` // TODO: consider changing logger to include request date
+		Type logger.Type `envconfig:"default=1"`
 	}
 }
