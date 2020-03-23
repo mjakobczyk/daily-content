@@ -1,7 +1,8 @@
 # Daily Content
 
-[![GoDoc](https://godoc.org/github.com/mjakobczyk/daily-content?status.svg)](https://godoc.org/github.com/kyma-incubator/bullseye-showcase)
-[![Go Report Card](https://goreportcard.com/badge/mjakobczyk/daily-content)](https://goreportcard.com/mjakobczyk/daily-content)
+[![GoDoc](https://godoc.org/github.com/mjakobczyk/daily-content?status.svg)](https://godoc.org/github.com/mjakobczyk/daily-content)
+[![Go Report Card](https://goreportcard.com/badge/mjakobczyk/daily-content)](https://goreportcard.com/report/github.com/mjakobczyk/daily-content)
+[![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](https://github.com/mjakobczyk/daily-content/blob/master/LICENSE)
 
 ## Overview
 
