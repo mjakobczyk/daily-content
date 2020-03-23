@@ -1,4 +1,4 @@
-package newsapi
+package env
 
 // ProductError informs about possible failures in requests.
 type NewsAPIError string

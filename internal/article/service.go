@@ -23,6 +23,12 @@ func NewService(e *env.Environment, r repository) *Service {
 	}
 }
 
+// GetLatestArticles returns all Articles from the system.
+func (s *Service) GetAllArticles() []newsapi.ArticleDTO {
+	return s.repository.GetAllArticles()
+}
+
+// GetLatestArticles returns recently added articles.
 func (s *Service) GetLatestArticles() []newsapi.ArticleDTO {
 	return s.repository.GetAllArticles()
 }

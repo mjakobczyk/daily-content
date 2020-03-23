@@ -3,6 +3,8 @@ package server
 import (
 	"encoding/json"
 	"net/http"
+
+	"github.com/mjakobczyk/daily-content/env"
 )
 
 func (s *Server) randomStuffGETHandler(w http.ResponseWriter, r *http.Request) {
@@ -14,7 +16,7 @@ func (s *Server) randomStuffGETHandler(w http.ResponseWriter, r *http.Request) {
 
 	body, err := json.Marshal(response)
 	if err != nil {
-		_ = NewAPIError(err.Error(), http.StatusInternalServerError).Send(w)
+		_ = env.NewAPIError(err.Error(), http.StatusInternalServerError).Send(w)
 		return
 	}
 

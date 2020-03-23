@@ -28,8 +28,7 @@ func NewServer(c *Config, e *env.Environment, newsapi newsapiService) *Server {
 		newsapi: newsapi,
 	}
 
-	srv.env.Router.Get("/randomstuff", srv.randomStuffGETHandler)
-	srv.env.Router.Get("/headlines", srv.headlinesGETHandler)
+	srv.env.Router.Get("/test/headlines", srv.headlinesGETHandler)
 
 	return &srv
 }

@@ -1,4 +1,4 @@
-package server
+package env
 
 import (
 	"encoding/json"
@@ -17,11 +17,11 @@ func NewAPIError(msg string, code int) APIError {
 }
 
 // Send sends a marshaled Error with given code
-func (e APIError) Send(w http.ResponseWriter) error {
-	out, _ := json.Marshal(e) // TODO: can there be error?
+func (e APIError) Send(resp http.ResponseWriter) error {
+	out, _ := json.Marshal(e)
+	resp.Header().Set("X-Content-Type-Options", "nosniff")
+	resp.WriteHeader(e.Code)
+	_, err := resp.Write(out)
 
-	w.Header().Set("X-Content-Type-Options", "nosniff")
-	w.WriteHeader(e.Code)
-	_, err := w.Write(out)
 	return err
 }

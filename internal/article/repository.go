@@ -11,6 +11,7 @@ func NewRepository() *Repository {
 	return &Repository{}
 }
 
+// GetAllArticles returns all availablw Articles.
 func (r *Repository) GetAllArticles() []newsapi.ArticleDTO {
 	return []newsapi.ArticleDTO{
 		newsapi.ArticleDTO{},
