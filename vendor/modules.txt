@@ -4,9 +4,19 @@ github.com/go-http-utils/logger
 # github.com/gorilla/mux v1.7.0
 ## explicit
 github.com/gorilla/mux
+# github.com/jinzhu/gorm v1.9.12
+## explicit
+github.com/jinzhu/gorm
+# github.com/jinzhu/inflection v1.0.0
+github.com/jinzhu/inflection
 # github.com/justinas/alice v0.0.0-20171023064455-03f45bd4b7da
 ## explicit
 github.com/justinas/alice
+# github.com/lib/pq v1.3.0
+## explicit
+github.com/lib/pq
+github.com/lib/pq/oid
+github.com/lib/pq/scram
 # github.com/vrischmann/envconfig v1.1.0
 ## explicit
 github.com/vrischmann/envconfig

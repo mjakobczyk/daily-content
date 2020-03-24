@@ -1,12 +1,12 @@
 package main
 
 import (
-	"log"
 	"sync"
 
 	"github.com/mjakobczyk/daily-content/config"
 	"github.com/mjakobczyk/daily-content/env"
 	"github.com/mjakobczyk/daily-content/internal/article"
+	"github.com/mjakobczyk/daily-content/internal/db"
 	"github.com/mjakobczyk/daily-content/internal/server"
 
 	"github.com/vrischmann/envconfig"
@@ -17,9 +17,11 @@ func main() {
 	err := envconfig.Init(&config)
 	panicOnError(err)
 
-	log.Println("Config: ", config) // TODO: create String() for Config
+	db, err := db.NewDatabase(&config.DB)
+	panicOnError(err)
+	db.Info()
 
-	env := env.NewEnvironment(config.Server.Logger.Type)
+	env := env.NewEnvironment(config.Server.Logger.Type, db.DB)
 
 	articleRepository := article.NewRepository()
 	articleService := article.NewService(env, articleRepository)

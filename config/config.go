@@ -1,6 +1,7 @@
 package config
 
 import (
+	"github.com/mjakobczyk/daily-content/internal/db"
 	"github.com/mjakobczyk/daily-content/internal/newsapi"
 	"github.com/mjakobczyk/daily-content/internal/server"
 )
@@ -9,4 +10,5 @@ import (
 type Config struct {
 	Server  server.Config
 	NewsAPI newsapi.Config
+	DB      db.Config
 }

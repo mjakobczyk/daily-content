@@ -2,6 +2,7 @@ package env
 
 import (
 	"github.com/go-http-utils/logger"
+	"github.com/jinzhu/gorm"
 	"github.com/justinas/alice"
 )
 
@@ -10,11 +11,12 @@ import (
 type Environment struct {
 	Middleware alice.Chain
 	Router     *Router
+	DB         *gorm.DB
 }
 
 // NewEnvironment is a default constructor for an Environment.
 // It takes logger type as an argument.
-func NewEnvironment(logger logger.Type) *Environment {
+func NewEnvironment(logger logger.Type, db *gorm.DB) *Environment {
 	return &Environment{
 		Router: NewRouter(),
 		Middleware: alice.New(
@@ -22,5 +24,6 @@ func NewEnvironment(logger logger.Type) *Environment {
 			Header("Content-Type", "application/json"),
 			Log(logger),
 		),
+		DB: db,
 	}
 }
