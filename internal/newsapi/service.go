@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+
+	"github.com/mjakobczyk/daily-content/env"
 )
 
 // Service communicates with NewsAPI server.
@@ -37,8 +39,8 @@ func (s *Service) GetTopHeadlines() (TopHeadlineDTO, error) {
 
 	response, err := s.Doer.Do(request)
 	if err == nil {
-		if response.StatusCode >= 400 && response.StatusCode < 500 {
-			return TopHeadlineDTO{}, RequestFailedError
+		if response.StatusCode >= http.StatusBadRequest && response.StatusCode < http.StatusInternalServerError {
+			return TopHeadlineDTO{}, env.RequestFailedError
 		}
 	} else {
 		return TopHeadlineDTO{}, err
@@ -48,12 +50,12 @@ func (s *Service) GetTopHeadlines() (TopHeadlineDTO, error) {
 
 	data, err := ioutil.ReadAll(response.Body)
 	if err != nil {
-		return TopHeadlineDTO{}, ReadDataFailedError
+		return TopHeadlineDTO{}, env.ReadDataFailedError
 	}
 
 	err = json.Unmarshal(data, &topHeadlineDTO)
 	if err != nil {
-		return TopHeadlineDTO{}, UnmarshalDataFailedError
+		return TopHeadlineDTO{}, env.UnmarshalDataFailedError
 	}
 
 	return topHeadlineDTO, nil

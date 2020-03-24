@@ -21,15 +21,11 @@ type Server struct {
 }
 
 // NewServer function creates new instance of Server.
-func NewServer(c *Config, e *env.Environment, newsapi newsapiService) *Server {
+func NewServer(c *Config, e *env.Environment) *Server {
 	srv := Server{
-		config:  c,
-		env:     e,
-		newsapi: newsapi,
+		config: c,
+		env:    e,
 	}
-
-	srv.env.Router.HandleFunc("/randomstuff", srv.randomStuffGETHandler).Methods("GET")
-	srv.env.Router.HandleFunc("/headlines", srv.headlinesGETHandler).Methods("GET")
 
 	return &srv
 }
@@ -39,5 +35,5 @@ func (s *Server) Start() error {
 	address := fmt.Sprintf("%s:%v", s.config.IP, s.config.Port)
 	log.Println("Server starting at: ", address)
 
-	return http.ListenAndServe(address, s.env.Middleware.Then(&s.env.Router))
+	return http.ListenAndServe(address, s.env.Middleware.Then(s.env.Router.InternalRouter()))
 }
