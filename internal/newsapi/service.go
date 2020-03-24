@@ -39,7 +39,7 @@ func (s *Service) GetTopHeadlines() (TopHeadlineDTO, error) {
 
 	response, err := s.Doer.Do(request)
 	if err == nil {
-		if response.StatusCode >= 400 && response.StatusCode < 500 {
+		if response.StatusCode >= http.StatusBadRequest && response.StatusCode < http.StatusInternalServerError {
 			return TopHeadlineDTO{}, env.RequestFailedError
 		}
 	} else {

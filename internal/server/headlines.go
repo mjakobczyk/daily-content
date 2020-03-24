@@ -12,13 +12,13 @@ func (s *Server) headlinesGETHandler(w http.ResponseWriter, r *http.Request) {
 
 	response, err := s.newsapi.GetTopHeadlines()
 	if err != nil {
-		_ = env.NewAPIError(err.Error(), http.StatusInternalServerError).Send(w)
+		_ = env.NewAPIResponse(err.Error(), http.StatusInternalServerError).Send(w)
 		return
 	}
 
 	body, err := json.Marshal(response)
 	if err != nil {
-		_ = env.NewAPIError(err.Error(), http.StatusInternalServerError).Send(w)
+		_ = env.NewAPIResponse(err.Error(), http.StatusInternalServerError).Send(w)
 		return
 	}
 

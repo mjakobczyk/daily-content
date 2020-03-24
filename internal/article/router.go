@@ -15,6 +15,7 @@ type Router struct {
 	service service
 }
 
+// NewRouter is a default constructor of Router.
 func NewRouter(e *env.Environment, s service) *Router {
 	return &Router{
 		env:     e,
@@ -27,6 +28,7 @@ type service interface {
 	GetLatestArticles() []newsapi.ArticleDTO
 }
 
+// InitRoutes of articles.
 func (r *Router) InitRoutes() {
 	r.env.Router.Get("/articles", r.getAllArticlesHandler)
 }
@@ -37,7 +39,7 @@ func (r *Router) getAllArticlesHandler(resp http.ResponseWriter, req *http.Reque
 	body, err := json.Marshal(articles)
 	if err != nil {
 		log.Println(err)
-		_ = env.NewAPIError(env.ReadDataFailedError.String(), http.StatusInternalServerError).Send(resp)
+		_ = env.NewAPIResponse(env.ReadDataFailedError.String(), http.StatusInternalServerError).Send(resp)
 	}
 
 	_, _ = resp.Write(body)

@@ -30,5 +30,6 @@ func (s *Service) GetAllArticles() []newsapi.ArticleDTO {
 
 // GetLatestArticles returns recently added articles.
 func (s *Service) GetLatestArticles() []newsapi.ArticleDTO {
+	// TODO: adjust this implementation to take only latest articles
 	return s.repository.GetAllArticles()
 }

@@ -5,22 +5,22 @@ import (
 	"net/http"
 )
 
-// APIError returned from endpoints in json
-type APIError struct {
+// APIResponse returned from endpoints in JSON form.
+type APIResponse struct {
 	Message string `json:"message"`
 	Code    int    `json:"code"`
 }
 
-// NewAPIError is just a constructor. Nothing extraordinary
-func NewAPIError(msg string, code int) APIError {
-	return APIError{msg, code}
+// APIResponse is a default constructor of APIResponse.
+func NewAPIResponse(msg string, code int) APIResponse {
+	return APIResponse{msg, code}
 }
 
-// Send sends a marshaled Error with given code
-func (e APIError) Send(resp http.ResponseWriter) error {
-	out, _ := json.Marshal(e)
+// Send marshaled APIError with given code.
+func (a APIResponse) Send(resp http.ResponseWriter) error {
+	out, _ := json.Marshal(a)
 	resp.Header().Set("X-Content-Type-Options", "nosniff")
-	resp.WriteHeader(e.Code)
+	resp.WriteHeader(a.Code)
 	_, err := resp.Write(out)
 
 	return err

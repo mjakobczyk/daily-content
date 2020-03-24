@@ -39,6 +39,7 @@ func (r *Router) Delete(path string, f func(w http.ResponseWriter, r *http.Reque
 	r.router.HandleFunc(r.apiPathBuilder(path), f).Methods("DELETE")
 }
 
+// InternalRouter enables accessing router used in implementation.
 func (r *Router) InternalRouter() *mux.Router {
 	return r.router
 }

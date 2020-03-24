@@ -1,25 +1,25 @@
 package env
 
-// ProductError informs about possible failures in requests.
-type NewsAPIError string
+// APIError informs about possible failures in requests.
+type APIError string
 
 const (
 	// RequestFailedError when service call fails.
-	RequestFailedError NewsAPIError = "HTTP_REQUEST_FAILED"
+	RequestFailedError APIError = "HTTP_REQUEST_FAILED"
 
 	// ReadDataFailedError when response contains errors.
-	ReadDataFailedError NewsAPIError = "READ_DATA_FAILED"
+	ReadDataFailedError APIError = "READ_DATA_FAILED"
 
 	// UnmarshalDataFailedError when unmarshal data from response fails.
-	UnmarshalDataFailedError NewsAPIError = "UNMARSHAL_DATA_FAILED"
+	UnmarshalDataFailedError APIError = "UNMARSHAL_DATA_FAILED"
 )
 
-// Error returns error as a string.
-func (n NewsAPIError) Error() string {
-	return string(n)
+// Error returns error value as string.
+func (e APIError) Error() string {
+	return string(e)
 }
 
 // String returns string value.
-func (n NewsAPIError) String() string {
-	return string(n)
+func (e APIError) String() string {
+	return string(e)
 }

@@ -12,7 +12,7 @@ type Environment struct {
 	Router     *Router
 }
 
-// NewEnvironment is a contrusctor for an Environment.
+// NewEnvironment is a default constructor for an Environment.
 // It takes logger type as an argument.
 func NewEnvironment(logger logger.Type) *Environment {
 	return &Environment{
