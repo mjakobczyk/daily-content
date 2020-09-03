@@ -20,6 +20,7 @@ func main() {
 	db, err := db.NewDatabase(&config.DB)
 	panicOnError(err)
 	db.Info()
+	defer db.Close()
 
 	env := env.NewEnvironment(config.Server.Logger.Type, db.DB)
 
