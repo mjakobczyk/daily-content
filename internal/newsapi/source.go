@@ -2,8 +2,8 @@ package newsapi
 
 import "encoding/json"
 
-// SourceDTO type.
-type SourceDTO struct {
+// Source type.
+type Source struct {
 	ID   string `json:"id"`
 	Name string `json:"name"`
 }
@@ -14,7 +14,7 @@ type sourceRequestDTO struct {
 }
 
 // UnmarshalJSON provides custom unmarshaling for sourceRequestDTO type.
-func (s *SourceDTO) UnmarshalJSON(data []byte) error {
+func (s *Source) UnmarshalJSON(data []byte) error {
 	var sourceRequestDTO sourceRequestDTO
 
 	if err := json.Unmarshal(data, &sourceRequestDTO); err != nil {

@@ -24,8 +24,8 @@ func NewRouter(e *env.Environment, s service) *Router {
 }
 
 type service interface {
-	GetAllArticles() []newsapi.ArticleDTO
-	GetLatestArticles() []newsapi.ArticleDTO
+	GetAllArticles() []newsapi.Article
+	GetLatestArticles() []newsapi.Article
 }
 
 // InitRoutes of articles.

@@ -10,7 +10,7 @@ import (
 )
 
 type newsapiService interface {
-	GetTopHeadlines() (newsapi.TopHeadlineDTO, error)
+	GetTopHeadlines() (newsapi.TopHeadline, error)
 }
 
 // Server struct holds connectors and settings.

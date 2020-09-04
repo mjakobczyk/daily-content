@@ -1,32 +1,36 @@
 package newsapi
 
-import "encoding/json"
+import (
+	"encoding/json"
+	"github.com/jinzhu/gorm"
+)
 
-// ArticleDTO type.
-type ArticleDTO struct {
-	Source      SourceDTO `json:"source"`
-	Author      string    `json:"author"`
-	Title       string    `json:"title"`
-	Description string    `json:"description"`
-	URL         string    `json:"url"`
-	URLToImage  string    `json:"urlToImage"`
-	PublishedAt string    `json:"publishedAt"`
-	Content     string    `json:"content"`
+// Article type.
+type Article struct {
+	gorm.Model
+	Source      Source `json:"source"`
+	Author      string `json:"author"`
+	Title       string `json:"title"`
+	Description string `json:"description"`
+	URL         string `json:"url"`
+	URLToImage  string `json:"urlToImage"`
+	PublishedAt string `json:"publishedAt"`
+	Content     string `json:"content"`
 }
 
 type articleRequestDTO struct {
-	Source      SourceDTO `json:"source"`
-	Author      string    `json:"author"`
-	Title       string    `json:"title"`
-	Description string    `json:"description"`
-	URL         string    `json:"url"`
-	URLToImage  string    `json:"urlToImage"`
-	PublishedAt string    `json:"publishedAt"`
-	Content     string    `json:"content"`
+	Source      Source `json:"source"`
+	Author      string `json:"author"`
+	Title       string `json:"title"`
+	Description string `json:"description"`
+	URL         string `json:"url"`
+	URLToImage  string `json:"urlToImage"`
+	PublishedAt string `json:"publishedAt"`
+	Content     string `json:"content"`
 }
 
-// UnmarshalJSON provides custom unmarshaling for ArticleDTO type.
-func (a *ArticleDTO) UnmarshalJSON(data []byte) error {
+// UnmarshalJSON provides custom unmarshalling for Article type.
+func (a *Article) UnmarshalJSON(data []byte) error {
 	var articleRequestDTO articleRequestDTO
 
 	if err := json.Unmarshal(data, &articleRequestDTO); err != nil {

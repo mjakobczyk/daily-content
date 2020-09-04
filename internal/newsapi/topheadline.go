@@ -2,21 +2,21 @@ package newsapi
 
 import "encoding/json"
 
-// TopHeadlineDTO stores information about top headlines data from News API.
-type TopHeadlineDTO struct {
-	Status       string       `json:"status"`
-	TotalResults int          `json:"totalResults"`
-	Articles     []ArticleDTO `json:"articles"`
+// TopHeadline stores information about top headlines data from News API.
+type TopHeadline struct {
+	Status       string    `json:"status"`
+	TotalResults int       `json:"totalResults"`
+	Articles     []Article `json:"articles"`
 }
 
 type topHeadlineRequestDTO struct {
-	Status       string       `json:"status"`
-	TotalResults int          `json:"totalResults"`
-	Articles     []ArticleDTO `json:"articles"`
+	Status       string    `json:"status"`
+	TotalResults int       `json:"totalResults"`
+	Articles     []Article `json:"articles"`
 }
 
 // UnmarshalJSON provides custom unmarshaling for TopHealineDTO type.
-func (t *TopHeadlineDTO) UnmarshalJSON(data []byte) error {
+func (t *TopHeadline) UnmarshalJSON(data []byte) error {
 	var topHeadlineRequestDTO topHeadlineRequestDTO
 
 	if err := json.Unmarshal(data, &topHeadlineRequestDTO); err != nil {

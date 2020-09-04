@@ -12,9 +12,9 @@ func NewRepository() *Repository {
 }
 
 // GetAllArticles returns all available Articles.
-func (r *Repository) GetAllArticles() []newsapi.ArticleDTO {
+func (r *Repository) GetAllArticles() []newsapi.Article {
 	// TODO: change this mocked implementation
-	return []newsapi.ArticleDTO{
-		newsapi.ArticleDTO{},
+	return []newsapi.Article{
+		newsapi.Article{},
 	}
 }

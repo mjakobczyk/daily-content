@@ -24,8 +24,8 @@ func NewService(config *Config) *Service {
 }
 
 // GetTopHeadlines requests NewsAPI for news' top headlines.
-func (s *Service) GetTopHeadlines() (TopHeadlineDTO, error) {
-	var topHeadlineDTO TopHeadlineDTO
+func (s *Service) GetTopHeadlines() (TopHeadline, error) {
+	var topHeadlineDTO TopHeadline
 
 	url := fmt.Sprintf("%s/top-headlines?country=us&apiKey=%s",
 		s.Config.Host.API,
@@ -34,28 +34,28 @@ func (s *Service) GetTopHeadlines() (TopHeadlineDTO, error) {
 
 	request, err := http.NewRequest(http.MethodGet, url, nil)
 	if err != nil {
-		return TopHeadlineDTO{}, err
+		return TopHeadline{}, err
 	}
 
 	response, err := s.Doer.Do(request)
 	if err == nil {
 		if response.StatusCode >= http.StatusBadRequest && response.StatusCode < http.StatusInternalServerError {
-			return TopHeadlineDTO{}, env.RequestFailedError
+			return TopHeadline{}, env.RequestFailedError
 		}
 	} else {
-		return TopHeadlineDTO{}, err
+		return TopHeadline{}, err
 	}
 
 	defer func() { _ = response.Body.Close() }()
 
 	data, err := ioutil.ReadAll(response.Body)
 	if err != nil {
-		return TopHeadlineDTO{}, env.ReadDataFailedError
+		return TopHeadline{}, env.ReadDataFailedError
 	}
 
 	err = json.Unmarshal(data, &topHeadlineDTO)
 	if err != nil {
-		return TopHeadlineDTO{}, env.UnmarshalDataFailedError
+		return TopHeadline{}, env.UnmarshalDataFailedError
 	}
 
 	return topHeadlineDTO, nil
